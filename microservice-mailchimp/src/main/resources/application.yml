@@ -1,3 +1,6 @@
+server:
+  port: 9090
+
 spring:
   application:
     name: microservice-mailchimp
@@ -17,6 +20,7 @@ spring:
 mailchimp:
   api:
     key: ${MAILCHIMP_API_KEY}
+    base-url: ${MAILCHIMP_API_URL}
 
 eureka:
   instance:
