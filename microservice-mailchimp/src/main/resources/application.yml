@@ -5,9 +5,9 @@ spring:
   application:
     name: microservice-mailchimp
   datasource:
-    url: ${CRM_DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: ${CRM_URL}
+    username: ${CRM_USERNAME}
+    password: ${CRM_PASSWORD}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
     properties:
@@ -16,7 +16,7 @@ spring:
         dialect: org.hibernate.dialect.SQLServerDialect
     show-sql: true
   config:
-    import: optional:configserver:http://localhost:8888
+    import: ${CONFIGSERVER_HOST}
 mailchimp:
   api:
     key: ${MAILCHIMP_API_KEY}

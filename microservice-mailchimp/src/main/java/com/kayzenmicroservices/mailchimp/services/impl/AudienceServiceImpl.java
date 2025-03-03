@@ -34,11 +34,9 @@ public class AudienceServiceImpl implements AudienceService {
                 .block();
     }
 
-
-    //TODO Faltan estos
     public CampaignDTO createAudience(String id) {
         return webClientService.webClient.get()
-                .uri("lists/" + id)
+                .uri("lists/")
                 .retrieve()
                 .bodyToMono(CampaignDTO.class)
                 .block();

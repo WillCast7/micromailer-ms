@@ -3,7 +3,6 @@ package com.kayzenmicroservices.mailchimp.dtos;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kayzenmicroservices.mailchimp.dtos.audienceList.AudienceListDTO;
 import com.kayzenmicroservices.mailchimp.dtos.audienceList.ConstraintsDTO;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.CampaignDTO;
 import com.kayzenmicroservices.mailchimp.dtos.campaign.LinkDTO;
 
 import java.util.List;

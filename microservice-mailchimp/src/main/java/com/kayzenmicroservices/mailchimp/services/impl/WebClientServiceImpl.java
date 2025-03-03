@@ -1,5 +1,6 @@
 package com.kayzenmicroservices.mailchimp.services.impl;
 
+import com.kayzenmicroservices.mailchimp.dtos.campaign.CampaignDTO;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,4 +37,5 @@ public class WebClientServiceImpl {
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
+
 }
