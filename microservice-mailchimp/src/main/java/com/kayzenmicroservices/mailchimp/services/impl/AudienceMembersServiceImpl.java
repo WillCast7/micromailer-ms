@@ -1,41 +1,54 @@
  package com.kayzenmicroservices.mailchimp.services.impl;
 
-import com.kayzenmicroservices.mailchimp.dtos.AudienceResponseDTO;
-import com.kayzenmicroservices.mailchimp.dtos.BatchRequestDTO;
-import com.kayzenmicroservices.mailchimp.dtos.OperationDTO;
-import com.kayzenmicroservices.mailchimp.dtos.audienceList.AudienceListDTO;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.CampaignDTO;
-import com.kayzenmicroservices.mailchimp.services.AudienceService;
+import com.kayzenmicroservices.mailchimp.dtos.AudienceDTO;
+import com.kayzenmicroservices.mailchimp.dtos.MembresResponseDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.OperationDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
+import com.kayzenmicroservices.mailchimp.services.AudienceMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
  /**
  * Autor: William Castaño ;)
  * Fecha: 25/02/2025
  * Descripción: members audience all services
  */
-
-public class AudienceMembersServiceImpl implements AudienceService {
+@Service
+public class AudienceMembersServiceImpl implements AudienceMembersService {
 
     @Autowired
     WebClientServiceImpl webClientService;
 
-    public AudienceResponseDTO getAudienceMemberList(int row, int page, String id) {
+     /**
+      *
+      * @param row
+      * @param page
+      * @param id
+      * @return
+      */
+    public MembresResponseDTO getAudienceMemberList(int row, int page, String id) {
         return webClientService.webClient.get()
                 .uri("lists/" + id + "/members?count=" + row + "&offset=" + page)
                 .retrieve()
-                .bodyToMono(AudienceResponseDTO.class)
+                .bodyToMono(MembresResponseDTO.class)
                 .block();
     }
 
-    public AudienceListDTO getMember(String audienceId, String memberId) {
+     /**
+      *
+      * @param audienceId
+      * @param memberId
+      * @return
+      */
+    public AudienceMembersDTO getMember(String audienceId, String memberId) {
         return webClientService.webClient.get()
                 .uri("lists/" + audienceId + "/members/" + memberId)
                 .retrieve()
-                .bodyToMono(AudienceListDTO.class)
+                .bodyToMono(AudienceMembersDTO.class)
                 .block();
     }
 
@@ -43,15 +56,18 @@ public class AudienceMembersServiceImpl implements AudienceService {
      *
      * This method is for save many data
      * @param id is the id of the list or audience
-     * @param requestBody is the body for be transformed
+     * @param customerList is the customer's list for be transformed
      * @return response
      */
-    public CampaignDTO createAudience(String id, String requestBody) {
-        BatchRequestDTO body = new BatchRequestDTO();
-        body.setOperations(List.of(
-                new OperationDTO("POST", "/lists/{list_id}/members", "{\"email_address\":\"cliente1@example.com\",\"status\":\"subscribed\"}"),
-                new OperationDTO("POST", "/lists/{list_id}/members", "{\"email_address\":\"cliente2@example.com\",\"status\":\"subscribed\"}")
-        ));
+    public CampaignDTO createAudience(String id, List<AudienceDTO> customerList) {
+
+        List<OperationDTO> body = customerList.stream()
+                .map(cliente -> new OperationDTO(
+                        "POST",
+                        "/lists/{list_id}/members",
+                        String.format("{\"email_address\":\"%s\",\"status\":\"subscribed\"}", cliente.getEmail())
+                ))
+                .collect(Collectors.toList());
 
         return webClientService.webClient.post()
                 .uri("batches")
@@ -61,6 +77,11 @@ public class AudienceMembersServiceImpl implements AudienceService {
                 .block();
     }
 
+     /**
+      *
+      * @param id
+      * @return
+      */
     public CampaignDTO updateAudience(String id) {
         return webClientService.webClient.get()
                 .uri("campaigns/" + id)

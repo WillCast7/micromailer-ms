@@ -1,4 +1,4 @@
-package com.kayzenmicroservices.mailchimp.dtos.audienceList;
+package com.kayzenmicroservices.mailchimp.dtos;
 
 import lombok.Data;
 
@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Data
 public class CampaignDefaultsDTO {
-    private String fromName;
-    private String fromEmail;
+    private String from_name;
+    private String from_email;
     private String subject;
     private String language;
 }

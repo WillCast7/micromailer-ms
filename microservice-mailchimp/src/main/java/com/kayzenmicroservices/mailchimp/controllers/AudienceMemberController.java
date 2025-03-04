@@ -7,5 +7,5 @@ package com.kayzenmicroservices.mailchimp.controllers;
  */
 
 
-public class ClientsController {
+public class AudienceMemberController {
 }

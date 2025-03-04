@@ -1,10 +1,12 @@
 package com.kayzenmicroservices.mailchimp.services.impl;
 
-import com.kayzenmicroservices.mailchimp.dtos.CampaignsResponseDTO;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.CampaignDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.CampaignsResponseDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
 import com.kayzenmicroservices.mailchimp.services.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
 /**
@@ -15,9 +17,9 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class CampaignServiceImpl implements CampaignService {
+
     @Autowired
     WebClientServiceImpl webClientService;
-
 
     public CampaignsResponseDTO getCampaigns(int row, int page) {
         return webClientService.webClient.get()
@@ -34,9 +36,10 @@ public class CampaignServiceImpl implements CampaignService {
                 .block();
     }
 
-    public Mono<CampaignsResponseDTO> getCampaignsmono() {
-        return webClientService.webClient.get()
+    public Mono<CampaignsResponseDTO> createCampaign(CampaignRequestDTO body) {
+        return webClientService.webClient.post()
                 .uri("/campaigns")
+                .body(BodyInserters.fromValue(body))
                 .retrieve()
                 .bodyToMono(CampaignsResponseDTO.class);
     }

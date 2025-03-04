@@ -1,4 +1,4 @@
-package com.kayzenmicroservices.mailchimp.dtos.campaign;
+package com.kayzenmicroservices.mailchimp.dtos.response.campaign;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

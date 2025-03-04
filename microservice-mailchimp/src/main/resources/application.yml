@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: ${PORT}
 
 spring:
   application:
@@ -16,7 +16,7 @@ spring:
         dialect: org.hibernate.dialect.SQLServerDialect
     show-sql: true
   config:
-    import: ${CONFIGSERVER_HOST}
+    import: optional:configserver:http://localhost:8888
 mailchimp:
   api:
     key: ${MAILCHIMP_API_KEY}

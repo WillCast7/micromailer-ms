@@ -1,5 +1,6 @@
-package com.kayzenmicroservices.mailchimp.dtos;
+package com.kayzenmicroservices.mailchimp.dtos.request;
 
+import com.kayzenmicroservices.mailchimp.dtos.response.OperationDTO;
 import lombok.Getter;
 import lombok.Setter;
 

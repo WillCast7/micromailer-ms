@@ -1,7 +1,7 @@
 package com.kayzenmicroservices.mailchimp.controllers;
 
-import com.kayzenmicroservices.mailchimp.dtos.CampaignsResponseDTO;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.CampaignDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.CampaignsResponseDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
 import com.kayzenmicroservices.mailchimp.services.impl.CampaignServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +18,6 @@ import reactor.core.publisher.Mono;
 public class CampaignController {
     @Autowired
     CampaignServiceImpl campaignService;
-
-    @GetMapping("mono")
-    public Mono<CampaignsResponseDTO> getAllCampaingsmono(){
-        return campaignService.getCampaignsmono();
-    }
 
     @GetMapping
     public CampaignsResponseDTO getAllCampaings(@RequestParam(defaultValue = "10") int row,

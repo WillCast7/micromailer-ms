@@ -1,4 +1,4 @@
-package com.kayzenmicroservices.mailchimp.dtos.campaign;
+package com.kayzenmicroservices.mailchimp.dtos.response.campaign;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -9,7 +9,7 @@ public class LinkDTO {
     private String href;
     private String method;
 
-    @JsonProperty("targetSchema")
+    @JsonProperty("target_schema")
     private String targetSchema;
 
     private String schema;

@@ -1,9 +1,9 @@
-package com.kayzenmicroservices.mailchimp.dtos;
+package com.kayzenmicroservices.mailchimp.dtos.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kayzenmicroservices.mailchimp.dtos.audienceList.AudienceListDTO;
-import com.kayzenmicroservices.mailchimp.dtos.audienceList.ConstraintsDTO;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.LinkDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.ConstraintsDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.LinkDTO;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AudienceResponseDTO {
     @JsonProperty("lists")
-    private List<AudienceListDTO> campaigns;
+    private List<AudienceMembersDTO> campaigns;
 
     @JsonProperty("total_items")
     private Integer totalItems;

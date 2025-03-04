@@ -1,8 +1,8 @@
-package com.kayzenmicroservices.mailchimp.dtos;
+package com.kayzenmicroservices.mailchimp.dtos.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.CampaignDTO;
-import com.kayzenmicroservices.mailchimp.dtos.campaign.LinkDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.LinkDTO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.kayzenmicroservices.mailchimp.dtos.audienceList;
+package com.kayzenmicroservices.mailchimp.dtos;
 
 import lombok.Data;
 
