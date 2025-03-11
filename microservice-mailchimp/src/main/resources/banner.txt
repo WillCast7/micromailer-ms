@@ -1,9 +1,11 @@
-ooo        ooooo            o8o  oooo            oooo         o8o
-`88.       .888'            `"'  `888            `888         `"'
- 888b     d'888   .oooo.   oooo   888   .ooooo.   888 .oo.   oooo  ooo. .oo.  .oo.   oo.ooooo.
- 8 Y88. .P  888  `P  )88b  `888   888  d88' `"Y8  888P"Y88b  `888  `888P"Y88bP"Y88b   888' `88b
- 8  `888'   888   .oP"888   888   888  888        888   888   888   888   888   888   888   888
- 8    Y     888  d8(  888   888   888  888   .o8  888   888   888   888   888   888   888   888
-o8o        o888o `Y888""8o o888o o888o `Y8bod8P' o888o o888o o888o o888o o888o o888o  888bod8P'
-                                                                                      888
-                                                                                     o888o
+.88b  d88. d888888b  .o88b. d8888b.  .d88b.  .88b  d88.  .d8b.  d888888b db      d88888b d8888b.
+88'YbdP`88   `88'   d8P  Y8 88  `8D .8P  Y8. 88'YbdP`88 d8' `8b   `88'   88      88'     88  `8D
+88  88  88    88    8P      88oobY' 88    88 88  88  88 88ooo88    88    88      88ooooo 88oobY'
+88  88  88    88    8b      88`8b   88    88 88  88  88 88~~~88    88    88      88~~~~~ 88`8b
+88  88  88   .88.   Y8b  d8 88 `88. `8b  d8' 88  88  88 88   88   .88.   88booo. 88.     88 `88.
+YP  YP  YP Y888888P  `Y88P' 88   YD  `Y88P'  YP  YP  YP YP   YP Y888888P Y88888P Y88888P 88   YD
+
+MicroMailer
+Powered by Spring Boot ${spring-boot.version}
+Developed by WillCast.
+

@@ -1,6 +1,7 @@
 package com.kayzenmicroservices.mailchimp.services;
 
-import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceResponseDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
 
 public interface AudienceService {

@@ -1,15 +1,18 @@
  package com.kayzenmicroservices.mailchimp.services.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kayzenmicroservices.mailchimp.dtos.AudienceDTO;
 import com.kayzenmicroservices.mailchimp.dtos.MembresResponseDTO;
-import com.kayzenmicroservices.mailchimp.dtos.response.OperationDTO;
-import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.AudienceMemberListCreationBodyDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
 import com.kayzenmicroservices.mailchimp.services.AudienceMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
  /**
@@ -55,26 +58,48 @@ public class AudienceMembersServiceImpl implements AudienceMembersService {
     /**
      *
      * This method is for save many data
-     * @param id is the id of the list or audience
-     * @param customerList is the customer's list for be transformed
+     * @param clients is the customer's list for be transformed
      * @return response
      */
-    public CampaignDTO createAudience(String id, List<AudienceDTO> customerList) {
+    public List<String> createMemberListInAudience(String listId, AudienceMemberListCreationBodyDTO clients) {
+        List<String> results = new ArrayList<>();
+        List<AudienceDTO>customerList = clients.getCustomerList();
+        for (AudienceDTO cliente : customerList) {
+            try {
+                // Crear el cuerpo para un solo miembro
+                Map<String, Object> memberData = new HashMap<>();
+                memberData.put("email_address", cliente.getEmail());
+                memberData.put("status", "subscribed");
 
-        List<OperationDTO> body = customerList.stream()
-                .map(cliente -> new OperationDTO(
-                        "POST",
-                        "/lists/{list_id}/members",
-                        String.format("{\"email_address\":\"%s\",\"status\":\"subscribed\"}", cliente.getEmail())
-                ))
-                .collect(Collectors.toList());
+                Map<String, Object> mergeFields = new HashMap<>();
+                mergeFields.put("FNAME", cliente.getContactName());
+                mergeFields.put("PHONE", cliente.getPhoneNumber());
+                mergeFields.put("COMPANY", cliente.getName());
+                memberData.put("merge_fields", mergeFields);
 
-        return webClientService.webClient.post()
-                .uri("batches")
-                .bodyValue(body)
-                .retrieve()
-                .bodyToMono(CampaignDTO.class)
-                .block();
+                Map<String, Object> location = new HashMap<>();
+                location.put("city", cliente.getCity());
+                memberData.put("location", location);
+
+                System.out.println("memberData");
+                System.out.println(memberData);
+
+                // Enviar solicitud individual
+                String response = webClientService.webClient.post()
+                        .uri("/lists/" + listId + "/members")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(memberData)
+                        .retrieve()
+                        .bodyToMono(String.class)
+                        .block();
+
+                results.add("Éxito para " + cliente.getEmail() + ": " + response);
+            }catch (WebClientResponseException e) {
+                String errorBody = e.getResponseBodyAsString();
+                System.err.println("Error detallado: " + errorBody);}
+            }
+
+        return results;
     }
 
      /**

@@ -1,6 +1,7 @@
 package com.kayzenmicroservices.mailchimp.services.impl;
 
-import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceResponseDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
 import com.kayzenmicroservices.mailchimp.services.AudienceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class AudienceServiceImpl implements AudienceService {
     WebClientServiceImpl webClientService;
 
     public AudienceMembersDTO getAudienceList(int row, int page) {
+
         return webClientService.webClient.get()
                 .uri("lists?count=" + row + "&offset=" + page)
                 .retrieve()
@@ -35,7 +37,6 @@ public class AudienceServiceImpl implements AudienceService {
     }
 
     public AudienceMembersDTO createAudience(AudienceMembersDTO body) {
-
         System.out.println("body");
         System.out.println(body);
         return webClientService.webClient.post()

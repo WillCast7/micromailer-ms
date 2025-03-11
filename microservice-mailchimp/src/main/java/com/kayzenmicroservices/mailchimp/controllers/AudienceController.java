@@ -1,12 +1,15 @@
 package com.kayzenmicroservices.mailchimp.controllers;
 
 import com.kayzenmicroservices.mailchimp.dtos.MembresResponseDTO;
-import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.AudienceMemberListCreationBodyDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.services.AudienceMembersService;
 import com.kayzenmicroservices.mailchimp.services.AudienceService;
-import com.kayzenmicroservices.mailchimp.services.impl.AudienceMembersServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Autor: William Castaño ;)
@@ -21,11 +24,11 @@ public class AudienceController {
     AudienceService audienceService;
 
     @Autowired
-    AudienceMembersServiceImpl audienceMembersService;
+    AudienceMembersService audienceMembersService;
 
     @GetMapping
     public AudienceMembersDTO getAllAudiences(@RequestParam(defaultValue = "10") int row,
-                                              @RequestParam(defaultValue = "0") int page){
+                                               @RequestParam(defaultValue = "0") int page){
         return audienceService.getAudienceList(row, page);
     }
 
@@ -50,6 +53,12 @@ public class AudienceController {
     public AudienceMembersDTO getMembersById(@PathVariable String id,
                                              @PathVariable String idMember){
         return audienceMembersService.getMember(id, idMember);
+    }
+
+    @PostMapping("/{id}/members")
+    public List<String> createAudience(@PathVariable String id,
+                                      @Valid @RequestBody AudienceMemberListCreationBodyDTO customerList){
+        return audienceMembersService.createMemberListInAudience(id, customerList);
     }
 
 }

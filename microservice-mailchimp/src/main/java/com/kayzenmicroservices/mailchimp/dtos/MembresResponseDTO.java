@@ -1,7 +1,7 @@
 package com.kayzenmicroservices.mailchimp.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kayzenmicroservices.mailchimp.dtos.response.audienceList.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import lombok.Data;
 
 import java.util.List;
@@ -22,6 +22,6 @@ public class MembresResponseDTO {
     private String listId;
 
     @JsonProperty("total_items")
-    private String totalItems;
+    private int totalItems;
 
 }

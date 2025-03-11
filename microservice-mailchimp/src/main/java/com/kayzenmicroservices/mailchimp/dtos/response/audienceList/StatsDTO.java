@@ -3,6 +3,7 @@ package com.kayzenmicroservices.mailchimp.dtos.response.audienceList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -57,7 +58,7 @@ public class StatsDTO {
     private Integer clickRate;
 
     @JsonProperty("last_sub_date")
-    private LocalDateTime lastSubDate;
+    private String lastSubDate;
 
     @JsonProperty("last_unsub_date")
     private String lastUnsubDate;

@@ -2,6 +2,7 @@ package com.kayzenmicroservices.mailchimp.services.impl;
 
 import com.kayzenmicroservices.mailchimp.dtos.AudienceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Autor: William Castaño ;)
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Descripción: Au services implementation
  */
 
-
+@Service
 public class ListServiceImpl {
     @Autowired
     WebClientServiceImpl webClientService;
