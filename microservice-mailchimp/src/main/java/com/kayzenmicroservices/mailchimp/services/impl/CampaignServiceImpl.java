@@ -4,11 +4,14 @@ import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.CampaignCreationResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.CampaignsResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.campaign.RecipientsDTO;
 import com.kayzenmicroservices.mailchimp.services.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+
+import java.util.Optional;
 
 /**
  * Autor: William Castaño ;)
@@ -38,10 +41,9 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     public CampaignCreationResponseDTO createCampaign(CampaignRequestDTO body) {
-        System.out.println("entro al servicio");
-        System.out.println(body);
-        System.out.println("body");
+
         CampaignCreationResponseDTO response = new CampaignCreationResponseDTO();
+
 
         try {
             response = webClientService.webClient.post()

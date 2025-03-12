@@ -2,6 +2,7 @@ package com.kayzenmicroservices.mailchimp.services;
 
 import com.kayzenmicroservices.mailchimp.dtos.AudienceDTO;
 import com.kayzenmicroservices.mailchimp.dtos.request.AudienceMemberListCreationBodyDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 
 import java.util.List;
@@ -13,5 +14,5 @@ import java.util.List;
  */
 
 public interface MailChimpService {
-    public String sendEmailsCreatingAudienceAndCampaign(AudienceMembersDTO audienceLis, AudienceMemberListCreationBodyDTO customerList);
+    public String sendEmailsCreatingAudienceAndCampaign(AudienceMembersDTO audienceLis, AudienceMemberListCreationBodyDTO customerList, CampaignRequestDTO campaign);
 }

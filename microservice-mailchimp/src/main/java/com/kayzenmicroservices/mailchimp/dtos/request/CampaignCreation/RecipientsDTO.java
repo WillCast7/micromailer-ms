@@ -2,6 +2,7 @@ package com.kayzenmicroservices.mailchimp.dtos.request.CampaignCreation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 
 /**
  * Autor: William Castaño ;)
@@ -9,7 +10,7 @@ import jakarta.validation.constraints.NotBlank;
  * Descripción:
  */
 
-
+@Data
 public class RecipientsDTO {
 //    @JsonProperty("segment_opts")
 //    private SegmentOptsDTO segmentOpts;

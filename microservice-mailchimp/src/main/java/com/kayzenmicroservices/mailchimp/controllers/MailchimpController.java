@@ -2,6 +2,7 @@ package com.kayzenmicroservices.mailchimp.controllers;
 
 import com.kayzenmicroservices.mailchimp.dtos.AudienceDTO;
 import com.kayzenmicroservices.mailchimp.dtos.request.AudienceMemberListCreationBodyDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import com.kayzenmicroservices.mailchimp.services.MailChimpService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class MailchimpController {
     MailChimpService mailchimpService;
 
     @PostMapping(name = "/createnadsend")
-    public String sendEmailsCreatingAudienceAndCampaign(AudienceMembersDTO audienceList, AudienceMemberListCreationBodyDTO customerList ){
-        mailchimpService.sendEmailsCreatingAudienceAndCampaign(audienceList, customerList);
+    public String sendEmailsCreatingAudienceAndCampaign(AudienceMembersDTO audienceList, AudienceMemberListCreationBodyDTO customerList, CampaignRequestDTO campaign){
+        mailchimpService.sendEmailsCreatingAudienceAndCampaign(audienceList, customerList, campaign);
         return "created";
 
     }

@@ -37,8 +37,6 @@ public class AudienceServiceImpl implements AudienceService {
     }
 
     public AudienceMembersDTO createAudience(AudienceMembersDTO body) {
-        System.out.println("body");
-        System.out.println(body);
         return webClientService.webClient.post()
                 .uri("lists")
                 .body(BodyInserters.fromValue(body))
