@@ -1,15 +1,14 @@
 package com.kayzenmicroservices.mailchimp.services.impl;
 
 import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
-import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.CampaignCreationResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.CampaignsResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
 import com.kayzenmicroservices.mailchimp.services.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
-import reactor.core.publisher.Mono;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 /**
  * Autor: William Castaño ;)
@@ -38,13 +37,26 @@ public class CampaignServiceImpl implements CampaignService {
                 .block();
     }
 
-    public CampaignsResponseDTO createCampaign(CampaignRequestDTO body) {
+    public CampaignCreationResponseDTO createCampaign(CampaignRequestDTO body) {
         System.out.println("entro al servicio");
-        return webClientService.webClient.post()
-                .uri("/campaigns")
-                .body(BodyInserters.fromValue(body))
-                .retrieve()
-                .bodyToMono(CampaignsResponseDTO.class)
-                .block();
+        System.out.println(body);
+        System.out.println("body");
+        CampaignCreationResponseDTO response = new CampaignCreationResponseDTO();
+
+        try {
+            response = webClientService.webClient.post()
+                    .uri("/campaigns")
+                    .body(BodyInserters.fromValue(body))
+                    .retrieve()
+                    .bodyToMono(CampaignCreationResponseDTO.class)
+                    .block();
+
+        }catch (WebClientResponseException e) {
+            String errorBody = e.getResponseBodyAsString();
+            System.err.println("Error detallado: " + errorBody);
+        }
+
+        return response;
     }
+
 }

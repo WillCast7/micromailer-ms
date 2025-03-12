@@ -11,7 +11,8 @@ import jakarta.validation.constraints.NotBlank;
 
 
 public class RecipientsDTO {
-    private SegmentOptsDTO segment_opts;
+//    @JsonProperty("segment_opts")
+//    private SegmentOptsDTO segmentOpts;
 
     @NotBlank(message = "Numero id de list o audiencia")
     @JsonProperty("list_id")

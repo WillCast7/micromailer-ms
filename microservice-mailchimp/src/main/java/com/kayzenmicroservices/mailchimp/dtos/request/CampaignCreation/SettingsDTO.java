@@ -16,8 +16,8 @@ public class SettingsDTO {
     @JsonProperty("subject_line")
     private String subjectLine;
 
-    @JsonProperty("preview_text")
-    private String previewText;
+//    @JsonProperty("preview_text")
+//    private String previewText;
 
     private String title;
 
@@ -30,28 +30,28 @@ public class SettingsDTO {
     @JsonProperty("use_conversation")
     private boolean useConversation;
 
-    @JsonProperty("to_name")
-    private String toName;
+//    @JsonProperty("to_name")
+//    private String toName;
 
-    @JsonProperty("folder_id")
-    private String folderId;
+//    @JsonProperty("folder_id")
+//    private String folderId;
 
-    private boolean authenticate;
+   // private boolean authenticate;
 
-    @JsonProperty("auto_footer")
-    private boolean autoFooter;
-
-    @JsonProperty("inline_css")
-    private boolean inlineCss;
-
-    @JsonProperty("auto_tweet")
-    private boolean autoTweet;
-
-    @JsonProperty("auto_fb_post")
-    private Array autoFbPost;
-
-    @JsonProperty("fb_comments")
-    private boolean fbComments;
+//    @JsonProperty("auto_footer")
+//    private boolean autoFooter;
+//
+//    @JsonProperty("inline_css")
+//    private boolean inlineCss;
+//
+//    @JsonProperty("auto_tweet")
+//    private boolean autoTweet;
+//
+//    @JsonProperty("auto_fb_post")
+//    private List<String> autoFbPost;
+//
+//    @JsonProperty("fb_comments")
+//    private boolean fbComments;
 
     @JsonProperty("template_id")
     private int templateId;

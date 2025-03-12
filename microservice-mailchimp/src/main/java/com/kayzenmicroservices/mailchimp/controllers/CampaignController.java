@@ -1,13 +1,13 @@
 package com.kayzenmicroservices.mailchimp.controllers;
 
 import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.CampaignCreationResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.CampaignsResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.campaign.CampaignDTO;
-import com.kayzenmicroservices.mailchimp.services.impl.CampaignServiceImpl;
+import com.kayzenmicroservices.mailchimp.services.CampaignService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
 /**
  * Autor: William Castaño ;)
@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 public class CampaignController {
 
     @Autowired
-    CampaignServiceImpl campaignService;
+    CampaignService campaignService;
 
     @GetMapping
     public CampaignsResponseDTO getAllCampaings(@RequestParam(defaultValue = "10") int row,
@@ -34,7 +34,7 @@ public class CampaignController {
     }
 
     @PostMapping(produces = "application/json")
-    public CampaignsResponseDTO createCampaign(@Valid @RequestBody CampaignRequestDTO body){
+    public CampaignCreationResponseDTO createCampaign(@Valid @RequestBody CampaignRequestDTO body){
         return campaignService.createCampaign(body);
     }
 

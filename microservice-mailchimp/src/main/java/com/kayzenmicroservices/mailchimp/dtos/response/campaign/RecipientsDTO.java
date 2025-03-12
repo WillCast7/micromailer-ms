@@ -20,6 +20,9 @@ public class RecipientsDTO {
     @JsonProperty("recipient_count")
     private Integer recipientCount;
 
-    @JsonProperty("segment_opts")
-    private SegmentOptsDTO segmentOpts;
+    @JsonProperty("prebuilt_segment_id")
+    private String prebuiltSegmentId;
+
+//    @JsonProperty("segment_opts")
+//    private SegmentOptsDTO segmentOpts;
 }

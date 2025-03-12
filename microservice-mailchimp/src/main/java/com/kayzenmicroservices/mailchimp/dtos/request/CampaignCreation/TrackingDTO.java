@@ -19,13 +19,10 @@ public class TrackingDTO {
     @JsonProperty("text_clicks")
     private boolean textClicks;
 
-    @JsonProperty("goal_tracking")
-    private boolean goalTracking;
-
     private boolean ecomm360;
 
-    @JsonProperty("google_analytics")
-    private String googleAnalytics;
+//    @JsonProperty("google_analytics")
+//    private String googleAnalytics;
 
     private String clicktale;
 
