@@ -1,5 +1,6 @@
 package com.kayzenmicroservices.mailchimp.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -10,8 +11,14 @@ import lombok.Data;
 
 @Data
 public class CampaignDefaultsDTO {
-    private String from_name;
-    private String from_email;
+
+    @JsonProperty("from_name")
+    private String fromName;
+
+    @JsonProperty("from_email")
+    private String fromEmail;
+
     private String subject;
+
     private String language;
 }

@@ -1,6 +1,7 @@
 package com.kayzenmicroservices.mailchimp.dtos.request.CampaignCreation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.lang.reflect.Array;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * Fecha: 4/03/2025
  * Descripción:
  */
-
+@Data
 public class SettingsDTO {
 
     @JsonProperty("subject_line")

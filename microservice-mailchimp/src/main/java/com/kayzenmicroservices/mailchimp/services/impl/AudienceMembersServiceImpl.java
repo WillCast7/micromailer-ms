@@ -62,6 +62,7 @@ public class AudienceMembersServiceImpl implements AudienceMembersService {
      * @return response
      */
     public List<String> createMemberListInAudience(String listId, AudienceMemberListCreationBodyDTO clients) {
+        System.out.println("Crea una lista de clientes en la audiencia de id" + listId);
         List<String> results = new ArrayList<>();
         List<AudienceDTO>customerList = clients.getCustomerList();
         for (AudienceDTO cliente : customerList) {

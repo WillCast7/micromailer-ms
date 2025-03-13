@@ -3,6 +3,7 @@ package com.kayzenmicroservices.mailchimp.dtos.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kayzenmicroservices.mailchimp.dtos.CampaignDefaultsDTO;
 import com.kayzenmicroservices.mailchimp.dtos.ContactDTO;
+import lombok.Data;
 
 /**
  * Autor: William Castaño ;)
@@ -10,6 +11,7 @@ import com.kayzenmicroservices.mailchimp.dtos.ContactDTO;
  * Descripción: this is the body for  creation of a  audience
  */
 
+@Data
 public class AudienceCreationBodyDTO {
 
     private String name;

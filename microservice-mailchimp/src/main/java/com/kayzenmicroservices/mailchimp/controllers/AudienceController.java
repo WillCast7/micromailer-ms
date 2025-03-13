@@ -1,7 +1,9 @@
 package com.kayzenmicroservices.mailchimp.controllers;
 
 import com.kayzenmicroservices.mailchimp.dtos.MembresResponseDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.AudienceCreationBodyDTO;
 import com.kayzenmicroservices.mailchimp.dtos.request.AudienceMemberListCreationBodyDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceCreationResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import com.kayzenmicroservices.mailchimp.services.AudienceMembersService;
 import com.kayzenmicroservices.mailchimp.services.AudienceService;
@@ -38,7 +40,7 @@ public class AudienceController {
     }
 
     @PostMapping
-    public AudienceMembersDTO createAudience(@Valid @RequestBody AudienceMembersDTO body){
+    public AudienceCreationResponseDTO createAudience(@Valid @RequestBody AudienceCreationBodyDTO body){
         return audienceService.createAudience(body);
     }
 

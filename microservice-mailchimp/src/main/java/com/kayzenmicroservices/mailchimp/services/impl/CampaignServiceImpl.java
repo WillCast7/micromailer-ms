@@ -41,7 +41,7 @@ public class CampaignServiceImpl implements CampaignService {
     }
 
     public CampaignCreationResponseDTO createCampaign(CampaignRequestDTO body) {
-
+        System.out.println("Crea una campaña con la lista ");
         CampaignCreationResponseDTO response = new CampaignCreationResponseDTO();
 
 

@@ -1,12 +1,17 @@
 package com.kayzenmicroservices.mailchimp.controllers;
 
 import com.kayzenmicroservices.mailchimp.dtos.AudienceDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.AudienceCreationBodyDTO;
 import com.kayzenmicroservices.mailchimp.dtos.request.AudienceMemberListCreationBodyDTO;
 import com.kayzenmicroservices.mailchimp.dtos.request.CampaignRequestDTO;
+import com.kayzenmicroservices.mailchimp.dtos.request.MailchimpCompleteCreationDTO;
+import com.kayzenmicroservices.mailchimp.dtos.response.AudienceCreationResponseDTO;
 import com.kayzenmicroservices.mailchimp.dtos.response.AudienceMembersDTO;
 import com.kayzenmicroservices.mailchimp.services.MailChimpService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,9 +29,12 @@ public class MailchimpController {
     @Autowired
     MailChimpService mailchimpService;
 
-    @PostMapping(name = "/createnadsend")
-    public String sendEmailsCreatingAudienceAndCampaign(AudienceMembersDTO audienceList, AudienceMemberListCreationBodyDTO customerList, CampaignRequestDTO campaign){
-        mailchimpService.sendEmailsCreatingAudienceAndCampaign(audienceList, customerList, campaign);
+    @PostMapping("/createnadsend")
+    public String sendEmailsCreatingAudienceAndCampaign(@Valid @RequestBody MailchimpCompleteCreationDTO request){
+        mailchimpService.sendEmailsCreatingAudienceAndCampaign(
+                request.getAudience(),
+                request.getCustomerList(),
+                request.getCampaign());
         return "created";
 
     }
