@@ -20,21 +20,20 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientServiceImpl {
 
     @org.springframework.beans.factory.annotation.Value("${mailchimp.api.base-url}")
-    private String baseUrl;
+    private String mailchimpBaseUrl;
 
     @org.springframework.beans.factory.annotation.Value("${mailchimp.api.key}")
-    private String apiKey;
+    private String mailchimpApiKey;
 
     WebClient webClient;
 
     @PostConstruct
     public void initWebClient() {
-        log.info("Inicializando WebClient con URL base: {}", baseUrl);
+        log.info("Inicializando WebClient con URL base: {}", mailchimpBaseUrl);
         this.webClient = WebClient.builder()
-                .baseUrl(baseUrl)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
+                .baseUrl(mailchimpBaseUrl)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + mailchimpApiKey)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
-
 }
